@@ -1,15 +1,13 @@
-endpoint: https://mendix.atlassian.net/
+endpoint: {URL to Jira}
 
-user: sean.ryan@mendix.com
-project: AA
+user: {email address}
+project: {project ID}
 
 # keyring not implemented on Windows!
 # password-source: keyring
 #
 # workaround
 authentication-method: api-token
-
-
 
 custom-commands:
   - name: mine

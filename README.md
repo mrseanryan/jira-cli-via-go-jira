@@ -10,7 +10,7 @@ https://github.com/go-jira/jira
 
 1. create API token via the Jira website
 
-2. configure Go-Jira (see ref) for endpoint, user, project
+2. configure Go-Jira (see ref) for endpoint, user, project - this is the .jira-d/config.yml file
 
 3. create a script to set JIRA_API_TOKEN
 
