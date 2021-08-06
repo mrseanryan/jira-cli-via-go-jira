@@ -28,11 +28,22 @@ SET JIRA_API_TOKEN={token value}
 
 5. run the test script (it is only reading, not writing!)
 
+This is to check everything is setup OK.
+
 This script dumps a text report of the current sprint status, with stories + bugs ranked and grouped by status.
 
 `test_dump_current_sprint_state_sos.bat`
 
-6. try other options
+6. see the available options
+
+`go.bat`
+
+```
+usage: parse_current_sprint_issues.py [-h] -j JSON -s SPRINT_NAME -g GOAL [-o]
+parse_current_sprint_issues.py: error: argument -s/--sprint_name: expected one argument
+```
+
+7. try other options
 
 `go.bat "Sprint 123" "Sprint Goal A, B and C" -o`
 
