@@ -48,3 +48,19 @@ parse_current_sprint_issues.py: error: argument -s/--sprint_name: expected one a
 `go.bat "Sprint 123" "Sprint Goal A, B and C" -o`
 
 note: `-o` looks for a 'marker' issue that has summary containing text like `===`. Only issues that rank higher than this marker are included in the output.
+
+#### Example output
+
+```
+Sprint 123 - goal: Sprint Goal A, B and C
+Done:
+- [IP-1234] Implement feature X
+- [IP-1235] Implement feature Y
+In Progress:
+- [IP-2001] Fix the button A
+- [IP-2002] Fix the button B
+To Do:
+- [IP-2003] Fix the button C
+- [IP-2004] Fix the button D
+Dependencies/Impediments: None
+```
