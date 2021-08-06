@@ -1,6 +1,8 @@
-# Jira cmd line README
+# jira-cli-via-go-jira README
 
-## Ref
+:sweat_drops: a JIRA CLI (command line interface) to dump a summary of the state of the current sprint. Uses the go-jira library.
+
+## Reference
 
 https://github.com/go-jira/jira
 
