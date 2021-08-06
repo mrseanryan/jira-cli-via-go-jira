@@ -1,0 +1,26 @@
+endpoint: https://mendix.atlassian.net/
+
+user: sean.ryan@mendix.com
+project: AA
+
+# keyring not implemented on Windows!
+# password-source: keyring
+#
+# workaround
+authentication-method: api-token
+
+
+
+custom-commands:
+  - name: mine
+    help: display issues assigned to me
+    script: |-
+      ./jira.exe list --template table --query "resolution = unresolved and assignee=currentuser() and project = $JIRA_PROJECT ORDER BY priority asc, created"
+  - name: sprint
+    help: display issues for active sprint
+    script: |-
+      ./jira.exe list --template debug --query "sprint in openSprints() and type != epic and issuetype != Sub-task and status != resolved and project=AA ORDER BY rank asc, created"
+  - name: sprint-sos
+    help: display issues for active sprint, SOS (stories only, sorted by status)
+    script: |-
+      ./jira.exe list --template json --query "sprint in openSprints() and type != epic and issuetype != Sub-task and status != resolved and project=AA ORDER BY rank asc"
