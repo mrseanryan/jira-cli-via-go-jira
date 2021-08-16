@@ -8,6 +8,8 @@ ap.add_argument("-s", "--sprint_name", required=True,
                 help="The name of the sprint")
 ap.add_argument("-g", "--goal", required=True,
                 help="The sprint goal")
+ap.add_argument("-m", "--markdown",  action='store_true', required=False,
+                help="Output in markdown format")
 ap.add_argument("-o", "--omit_stretch",  action='store_true', required=False,
                 help="Omit stretch issues")
 
@@ -16,6 +18,7 @@ args = vars(ap.parse_args())
 path_to_json = args['json']
 sprint_name = args['sprint_name']
 sprint_goal = args['goal']
+output_as_markdown = args['markdown']
 omit_stretch_issues = args['omit_stretch']
 
 with open(path_to_json) as f:
@@ -57,19 +60,28 @@ def sort_issues(issues):
 
 sorted_issue_dump = sort_issues(active_issue_dump)
 
+def output(text):
+  print(text)
+
+def output_heading(text):
+  if (output_as_markdown):
+    print(f"*{text}*")
+  else:
+    print(text)
+
 # - add header for sprint goal (not available via the go-jira tool)
-print(f"{sprint_name} - goal: {sprint_goal}")
+output_heading(f"{sprint_name} - goal: {sprint_goal}")
 
 statuses = set(map(lambda x: x['status'], sorted_issue_dump))
 
 def dump_issue(issue):
-  print(f"- [{issue['key']}] {issue['summary']}")
+  output(f"- [{issue['key']}] {issue['summary']}")
 
 for status in sorted(statuses):
-  print(f"{status}:")
+  output_heading(f"{status}:")
   issues_this_status = sort_issues(filter(lambda i: i['status'] == status, sorted_issue_dump))
   for issue in issues_this_status:
     dump_issue(issue)
 
 # - add footer for deps/impeds
-print("Dependencies/Impediments: None")
+output_heading("Dependencies/Impediments: None")
