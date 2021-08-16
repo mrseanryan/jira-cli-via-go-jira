@@ -90,11 +90,21 @@ The scripts in this project assume that the locations of `python` and `sh` are i
     parse_current_sprint_issues.py: error: argument -s/--sprint_name: expected one argument
     ```
 
-8. try other options
+8. try option -m
+ 
+    The `-m` markdown option:
+
+    `go.bat "Sprint 123" "Sprint Goal A, B and C" -m`
+
+    This formats the output using markdown notation.
+
+9. try option -o
+
+    The `-o` omit stretch issues option:
 
     `go.bat "Sprint 123" "Sprint Goal A, B and C" -o`
 
-    note: `-o` looks for a 'marker' issue that has summary containing text like `===`. Only issues that rank higher than this marker are included in the output.
+    This looks for a 'marker' issue that has summary containing text like `===`. Only issues that rank higher than this marker are included in the output.
 
 1. (optional) get the text output to your clipboard, using the clip command line tool
 

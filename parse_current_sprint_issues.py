@@ -40,10 +40,13 @@ issue_dump = list(map(flatten_indexed_issue, indexed_issue_dump))
 
 # print(issue_dump)
 
+def is_stretch_issue(issue):
+  return ("===" in issue['summary'])
+
 issue_dump_before_stretch = []
 found_stretch_marker = False
 for issue in issue_dump:
-  if ("===" in issue['summary']):
+  if (is_stretch_issue(issue)):
     found_stretch_marker = True
   if not(found_stretch_marker):
     issue_dump_before_stretch.append(issue)
@@ -51,6 +54,8 @@ for issue in issue_dump:
 active_issue_dump = issue_dump
 if (omit_stretch_issues):
   active_issue_dump = issue_dump_before_stretch
+
+active_issue_dump = filter(lambda i: not(is_stretch_issue(i)), active_issue_dump)
 
 def zero_pad(n):
   return f'{n:08}'
