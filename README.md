@@ -6,50 +6,103 @@
 
 https://github.com/go-jira/jira
 
+---
+
+## Dependencies
+
+### Python 3
+
+You need to install `Python 3` on your machine.
+
+Use the `Windows Installer (64 bit)` from the official Python site:
+
+https://www.python.org/downloads/windows/
+
+### Git bash
+
+`sh` is required for the python script.
+
+Download from https://gitforwindows.org/
+
+### System PATH environment variable
+
+The scripts in this project assume that the locations of `python` and `sh` are included in the `PATH` environment variable.
+
+---
+
 ## Usage
 
 ### Login
 
-1. create API token via the Jira website
+1. create the API token via the Jira website
+
+   - click on your avatar
+   - select Account settings
+   - select Security
+   - Under API Token, select Create and manage API tokens
+   - select Create API Token
+   - give the token an appropriate name
+   - copy the token value
 
 2. configure Go-Jira (see ref section above) for endpoint, user, project - this is the `.jira-d/config.yml` file
 
+    note: you need to remove the curly brackets.
+
 3. create a script to set JIRA_API_TOKEN
 
-set-jira-api-token-env-var.bat
-```
-@ECHO OFF
-SET JIRA_API_TOKEN={token value}
-```
+    This script will store the token value you received in step 1
 
-4. login
+    Create a text file named `set-jira-api-token-env-var.bat`
 
-`jira session`
+    The content needs to be as follows, but with the value of the token inserted:
+
+    ```
+    @ECHO OFF
+    SET JIRA_API_TOKEN={token value}
+    ```
+
+    note: you need to remove the curly brackets.
+
+4. run the script `set-jira-api-token-env-var.bat`
+
+5. login
+
+    Open a `cmd` command line prompt (NOT PowerShell) at this README location.
+
+    `jira session`
 
 ### Read data from JIRA
 
-5. run the test script (it is only reading, not writing!)
+6. run the test script (it is only reading, not writing!)
 
-This is to check everything is setup OK.
+    This is to check everything is setup OK.
 
-This script dumps a text report of the current sprint status, with stories + bugs ranked and grouped by status.
+    This script dumps a text report of the current sprint status, with stories + bugs ranked and grouped by status.
 
-`test_dump_current_sprint_state_sos.bat`
+    `test_dump_current_sprint_state_sos.bat`
 
-6. see the available options
+7. see the available options
 
-`go.bat`
+    `go.bat`
 
-```
-usage: parse_current_sprint_issues.py [-h] -j JSON -s SPRINT_NAME -g GOAL [-o]
-parse_current_sprint_issues.py: error: argument -s/--sprint_name: expected one argument
-```
+    ```
+    usage: parse_current_sprint_issues.py [-h] -j JSON -s SPRINT_NAME -g GOAL [-o]
+    parse_current_sprint_issues.py: error: argument -s/--sprint_name: expected one argument
+    ```
 
-7. try other options
+8. try other options
 
-`go.bat "Sprint 123" "Sprint Goal A, B and C" -o`
+    `go.bat "Sprint 123" "Sprint Goal A, B and C" -o`
 
-note: `-o` looks for a 'marker' issue that has summary containing text like `===`. Only issues that rank higher than this marker are included in the output.
+    note: `-o` looks for a 'marker' issue that has summary containing text like `===`. Only issues that rank higher than this marker are included in the output.
+
+1. (optional) get the text output to your clipboard, using the clip command line tool
+
+   Simply append `| clip` to the command.
+
+   Example:
+
+   `go.bat "Sprint 123" "Sprint Goal A, B and C" | clip`
 
 #### Example output
 
