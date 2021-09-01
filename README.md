@@ -81,14 +81,19 @@ The scripts in this project assume that the locations of `python` and `sh` are i
 
     `test_dump_current_sprint_state_sos.bat`
 
-7. see the available options
-
-    `go.bat`
+7. basic execution
 
     ```
-    usage: parse_current_sprint_issues.py [-h] -j JSON -s SPRINT_NAME -g GOAL [-o]
-    parse_current_sprint_issues.py: error: argument -s/--sprint_name: expected one argument
+    go.bat <sprint name> <sprint goals> [OPTIONS]
+
+    OPTIONS:
+    -m
+    -o
     ```
+
+note: currently, the built-in help is for the internal script `parse_current_sprint_issues.py`.
+
+It is recommended that you instead use the provided `go.bat` script.
 
 8. try option -m
  
@@ -106,7 +111,7 @@ The scripts in this project assume that the locations of `python` and `sh` are i
 
     This looks for a 'marker' issue that has summary containing text like `===`. Only issues that rank higher than this marker are included in the output.
 
-1. (optional) get the text output to your clipboard, using the clip command line tool
+10. (optional) get the text output to your clipboard, using the clip command line tool
 
    Simply append `| clip` to the command.
 
